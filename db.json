@@ -1,0 +1,67 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "isPremium": false,
+      "firstName": "juan",
+      "surname": "perez",
+      "fullName": "juan perez",
+      "email": "juan@gmail.com",
+      "phoneNumber": "123456789",
+      "birthDay": "2000-05-09T04:01:06.717Z",
+      "joinDate": "2021-05-22T22:11:44.3847779Z",
+      "lastOnline": "2021-05-22T22:11:44.3849315Z"
+    },
+    {
+      "id": 2,
+      "isPremium": false,
+      "firstName": "pepe",
+      "surname": "pepito",
+      "fullName": "pepe pepito",
+      "email": "pepe@gmail.com",
+      "phoneNumber": "987654321",
+      "birthDay": "2000-07-15T04:01:06.717Z",
+      "joinDate": "2021-05-22T22:11:48.5066179Z",
+      "lastOnline": "2021-05-22T22:11:48.5066181Z"
+    }
+  ],
+  "offices": [
+    {
+      "posts": [],
+      "reservations": [],
+      "user": null,
+      "userId": 1,
+      "district": null,
+      "districtId": 1,
+      "latitude": 12,
+      "longitude": 12,
+      "name": "oficina1",
+      "description": "oficina con buena vista",
+      "busy": false,
+      "id": 1,
+      "createdAt": "0001-01-01T00:00:00",
+      "updatedAt": "0001-01-01T00:00:00",
+      "isDeleted": false
+    },
+    {
+      "posts": [],
+      "reservations": [],
+      "user": null,
+      "userId": 2,
+      "district": null,
+      "districtId": 2,
+      "latitude": 12,
+      "longitude": 12,
+      "name": "oficina1",
+      "description": "oficina con buena vista",
+      "busy": false,
+      "id": 2,
+      "createdAt": "0001-01-01T00:00:00",
+      "updatedAt": "0001-01-01T00:00:00",
+      "isDeleted": false
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
