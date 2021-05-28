@@ -38,13 +38,9 @@
 
 <script>
 import UserService from "@/services/user-service";
-import Post from "@/models/post";
 
 export default {
   name: "view-posts",
-  props: {
-    post: Object[Post],
-  },
   data(){
     return {
       posts: {},

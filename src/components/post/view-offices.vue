@@ -38,14 +38,10 @@
 </template>
 
 <script>
-import Office from "@/models/office";
 import UserService from "@/services/user-service";
 
 export default {
   name: "view-office",
-  props: {
-    office: Object[Office],
-  },
   data(){
     return {
       offices: {},
@@ -53,7 +49,7 @@ export default {
   },
   methods: {
     retrieveOffices() {
-      UserService.getAllOffices(4).then(
+      UserService.getAllOfficesByUserId(1).then(
           response => {
             this.offices = response.data;
           })

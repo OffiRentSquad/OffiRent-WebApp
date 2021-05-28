@@ -9,7 +9,7 @@ class UserService {
         return http.put(`/users`,data)
     }
     getAllBookingIntents(){
-        return http.get(`/bookingintents?stateId=0`)
+        return http.get(`/bookingintents?bookingIntentState=0`)
     }
     getBookingIntentById(bookingId){
         return http.get(`/bookingintents/${bookingId}`)
@@ -26,11 +26,11 @@ class UserService {
     getAllPostsByUserId(userId){
         return http.get(`/posts?userId=${userId}`)
     }
+    getAllPosts(){
+        return http.get(`/posts`)
+    }
     getAllBookingIntentsByPostId(postId){
         return http.get(`/posts/${postId}/booking_intents`)
-    }
-    getAllPostsByOfficeId(officeId){
-        return http.get(`/posts?officeId=${officeId}`)
     }
     getAllPostsByFilters(minPrice, maxPrice, districtId, active){
         return http.get(`/posts?minPrice=${minPrice}&maxPrice=${maxPrice}&districtId=${districtId}&active=${active}`)
@@ -41,7 +41,10 @@ class UserService {
     deletePostById(postId){
         return http.delete(`/posts/${postId}`)
     }
-    getAllOffices(userId){
+    getAllOffices(){
+        return http.get(`/offices`)
+    }
+    getAllOfficesByUserId(userId){
         return http.get(`/offices?userId=${userId}`)
     }
     getOfficeById(officeId){

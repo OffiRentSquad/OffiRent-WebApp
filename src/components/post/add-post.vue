@@ -93,14 +93,14 @@ export default {
     createPost() {
       UserService.createPosts(this.item)
           .then(() => {
-            this.navigateToOffices();
+            this.navigateToPosts();
           })
           .catch(e => {
             console.log(e);
           })
     },
-    navigateToOffices(){
-      this.$router.push({name: 'view-offices'});
+    navigateToPosts(){
+      this.$router.push({name: 'view-posts'});
     },
   },
   mounted() {

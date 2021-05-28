@@ -4,6 +4,9 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
+  { path: '*', name: 'page-not-found', component: () => import('../components/page-not-found/page-not-found') },
+  { path: '/', name: 'home', component: () => import('../components/interface/home') },
+  { path: '/about', name: 'about', component: () => import('../components/post/about') },
   { path: '/profile', name: 'view-profile', component: () => import('../components/profile/view-profile') },
   { path: '/profile/edit', name: 'edit-profile', component: () => import('../components/profile/edit-profile') },
   { path: '/profile/premium', name: 'change-to-premium', component: () => import('../components/profile/change-to-premium') },
@@ -19,6 +22,7 @@ const routes = [
   { path: '/posts/:id/booking', name: 'add-booking-intent', component: () => import('../components/post/add-booking-intent') },
   { path: '/posts/:id/booking-intents', name: 'view-booking-intent-by-post', component: () => import('../components/post/view-booking-intent-by-post') },
   { path: '/offices/:id/post', name: 'add-post', component: () => import('../components/post/add-post') },
+  { path: '/my-reservations', name: 'view-reservations', component: () => import('../components/reservation/view-reservations') },
 ]
 
 const router = new VueRouter({

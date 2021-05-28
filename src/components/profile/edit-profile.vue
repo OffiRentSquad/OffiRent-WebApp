@@ -6,7 +6,7 @@
       <v-container>
         <v-form v-model="isValid">
           <v-text-field label="Nombre" v-model="user.fullName" :rules="[v => !!v || 'Nombre es requerido']" clearable required></v-text-field>
-          <v-text-field label="Teléfono" v-model="user.phoneNumber" :rules="phoneNumberRules" clearable required></v-text-field>
+          <v-text-field label="Teléfono" v-model="user.phoneNumber" maxlength="9" counter :rules="phoneNumberRules" clearable required></v-text-field>
           <v-text-field label="Correo" v-model="user.email" :rules="emailRules" clearable required></v-text-field>
           <!--v-text-field label="Contraseña" v-model="user.password" :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
                         :rules="passwordRules" :type="show ? 'text' : 'password'"

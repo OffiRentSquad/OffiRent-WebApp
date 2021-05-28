@@ -10,7 +10,9 @@
   "dependencies": {
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
+    "mdbvue": "^6.7.2",
     "payment": "^2.4.3",
+    "slick-carousel": "^1.8.1",
     "vue": "^2.6.11",
     "vue-router": "^3.5.1",
     "vue-store": "^0.3.1-moved",
@@ -27,6 +29,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "jquery": "^3.6.0",
     "sass": "^1.32.0",
     "sass-loader": "^10.0.0",
     "vue-cli-plugin-store": "0.0.7",

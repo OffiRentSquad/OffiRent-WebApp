@@ -19,7 +19,7 @@
       <v-divider></v-divider>
       <v-container>
         <v-form v-model="isValid">
-          <v-text-field label="Número" class="col-sm-12" type="card" :rules="numberRules" maxlength="16" counter clearable required>
+          <v-text-field label="Número" class="col-sm-12" type="card"  :rules="numberRules" maxlength="16" counter clearable required>
           </v-text-field>
           <v-row>
             <v-col cols="12" sm="3">

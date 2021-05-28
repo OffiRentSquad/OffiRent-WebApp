@@ -23,34 +23,34 @@
         <v-divider class="my-2"></v-divider>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon class="icon">mdi-account-circle</v-icon>
+            <v-icon>mdi-account-circle</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <router-link to="/profile" style="text-decoration: none; color: inherit;">
-              <v-list-item-title>Profile</v-list-item-title>
+              <v-list-item-title>Perfil</v-list-item-title>
             </router-link>
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon class="icon">mdi-account-circle</v-icon>
+            <v-icon>mdi-checkbook</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <router-link to="/booking-intent" style="text-decoration: none; color: inherit;">
-              <v-list-item-title>Booking Intents</v-list-item-title>
+              <v-list-item-title>Intentos de Reserva</v-list-item-title>
             </router-link>
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
-          <v-list-group :value="false" prepend-icon="mdi-account-circle">
+          <v-list-group :value="false" class="icon" prepend-icon="mdi-apps">
             <template v-slot:activator>
               <v-list-item-content>
                 <v-list-item-title>Offices</v-list-item-title>
               </v-list-item-content>
             </template>
-            <v-list-item v-for="([title, icon, link], i) in admins" :key="i" link>
+            <v-list-item v-for="([title, icon, link], i) in offices" :key="i" link>
               <v-list-item-icon>
-                <v-icon class="icon" v-text="icon"></v-icon>
+                <v-icon v-text="icon"></v-icon>
               </v-list-item-icon>
               <router-link :to="link" style="text-decoration: none; color: inherit;">
               <v-list-item-title v-text="title"></v-list-item-title>
@@ -60,7 +60,7 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon class="icon">mdi-account-circle</v-icon>
+            <v-icon>mdi-post</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <router-link to="/posts" style="text-decoration: none; color: inherit;">
@@ -70,11 +70,11 @@
         </v-list-item>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon class="icon">mdi-account-circle</v-icon>
+            <v-icon>mdi-calendar-month-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <router-link to="/my-reservations" style="text-decoration: none; color: inherit;">
-              <v-list-item-title>Reservations</v-list-item-title>
+              <v-list-item-title>Reservaciones</v-list-item-title>
             </router-link>
           </v-list-item-content>
         </v-list-item>
@@ -106,9 +106,9 @@ export default {
     drawer: false,
     group: null,
     user: User,
-    admins: [
-      ['Crear Oficina', 'mdi-plus-outline','/offices/add'],
-      ['Ver todas', 'mdi-file-outline','/offices'],
+    offices: [
+      ['Crear Oficina', 'mdi-playlist-plus','/offices/add'],
+      ['Ver todas', 'mdi-view-list','/offices'],
     ],
   }),
   methods: {
@@ -134,7 +134,7 @@ export default {
 
 <style scoped>
 .icon {
-  margin-left: 0.65em;
+  margin-left: -0.75em;
 }
 .switch{
 position: relative;
