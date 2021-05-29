@@ -4,13 +4,13 @@
       <v-card-title class="justify-center font-weight-light title">Oficinas</v-card-title>
       <v-row dense>
         <v-col class="mt-3 grid" v-for="office in offices" :key="office.name" :cols="6">
-          <v-card> <!--v-card v-if="office.userId === 1" para solo llamar a los offices de este user-->
+          <v-card v-if="office.userId === 1">
             <v-img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstudio3peru.com%2Fwp-content%2Fuploads%2F2016%2F12%2FOFICINA-EJECUTIVA-ESCRITORIO-Y-MESA-DE-REUNION.jpg&f=1&nofb=1" class="white--text align-end" height="200px">
               <v-card-title v-text="office.name"></v-card-title>
             </v-img>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn text v-if="office.userId === 1" @click="$router.push(`/offices/${office.id}/post`)" >
+              <v-btn text v-if="office.userId === 1 && office.busy === false" @click="$router.push(`/offices/${office.id}/post`)" >
                 Crear post
               </v-btn>
               <v-btn text @click="$router.push(`/offices/${office.id}`)" >
@@ -20,7 +20,7 @@
           </v-card>
         </v-col>
         <v-col class="mt-3 grid2" v-for="office in offices" :key="office.name" :cols="12">
-          <v-card>
+          <v-card v-if="office.userId === 1">
             <v-img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstudio3peru.com%2Fwp-content%2Fuploads%2F2016%2F12%2FOFICINA-EJECUTIVA-ESCRITORIO-Y-MESA-DE-REUNION.jpg&f=1&nofb=1" class="white--text align-end" height="200px">
               <v-card-title v-text="office.name"></v-card-title>
             </v-img>

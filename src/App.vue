@@ -26,7 +26,7 @@
             <v-icon>mdi-account-circle</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <router-link to="/profile" style="text-decoration: none; color: inherit;">
+            <router-link id="profile" to="/profile" style="text-decoration: none; color: inherit;">
               <v-list-item-title>Perfil</v-list-item-title>
             </router-link>
           </v-list-item-content>
@@ -36,7 +36,7 @@
             <v-icon>mdi-checkbook</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <router-link to="/booking-intent" style="text-decoration: none; color: inherit;">
+            <router-link id="bookingIntents" to="/booking-intents" style="text-decoration: none; color: inherit;">
               <v-list-item-title>Intentos de Reserva</v-list-item-title>
             </router-link>
           </v-list-item-content>
@@ -45,7 +45,7 @@
           <v-list-group :value="false" class="icon" prepend-icon="mdi-apps">
             <template v-slot:activator>
               <v-list-item-content>
-                <v-list-item-title>Offices</v-list-item-title>
+                <v-list-item-title>Oficinas</v-list-item-title>
               </v-list-item-content>
             </template>
             <v-list-item v-for="([title, icon, link], i) in offices" :key="i" link>
@@ -63,7 +63,7 @@
             <v-icon>mdi-post</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <router-link to="/posts" style="text-decoration: none; color: inherit;">
+            <router-link id="posts" to="/posts" style="text-decoration: none; color: inherit;">
               <v-list-item-title>Posts</v-list-item-title>
             </router-link>
           </v-list-item-content>
@@ -73,7 +73,7 @@
             <v-icon>mdi-calendar-month-outline</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <router-link to="/my-reservations" style="text-decoration: none; color: inherit;">
+            <router-link id="reservations" to="/my-reservations" style="text-decoration: none; color: inherit;">
               <v-list-item-title>Reservaciones</v-list-item-title>
             </router-link>
           </v-list-item-content>
@@ -134,7 +134,7 @@ export default {
 
 <style scoped>
 .icon {
-  margin-left: -0.75em;
+  margin-left: -1em;
 }
 .switch{
 position: relative;

@@ -102,6 +102,9 @@ export default {
     navigateToPosts(){
       this.$router.push({name: 'view-posts'});
     },
+    navigateToOffices(){
+      this.$router.push({name: 'view-offices'});
+    },
   },
   mounted() {
 

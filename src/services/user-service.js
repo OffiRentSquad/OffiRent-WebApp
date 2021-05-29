@@ -8,8 +8,11 @@ class UserService {
     editUser(data){
         return http.put(`/users`,data)
     }
-    getAllBookingIntents(){
-        return http.get(`/bookingintents?bookingIntentState=0`)
+    getSendBookingIntentsByUserId(userId){
+        return http.get(`/bookingintents?bookingIntentState=0&userId=${userId}`)
+    }
+    getRecordBookingIntentByUserId(userId){
+        return http.get(`/bookingintents?userId=${userId}&bookingIntentState=1&bookingIntentState=2&bookingIntentState=3`)
     }
     getBookingIntentById(bookingId){
         return http.get(`/bookingintents/${bookingId}`)
@@ -23,11 +26,11 @@ class UserService {
     createPosts(data){
         return http.post(`/posts`,data)
     }
-    getAllPostsByUserId(userId){
-        return http.get(`/posts?userId=${userId}`)
+    getAllPostsByUserId(){
+        return http.get(`/posts?active=true`)
     }
-    getAllPosts(){
-        return http.get(`/posts`)
+    getAllPostsByPostState(postState){
+        return http.get(`/posts?postState=${postState}`)
     }
     getAllBookingIntentsByPostId(postId){
         return http.get(`/posts/${postId}/booking_intents`)
@@ -59,6 +62,13 @@ class UserService {
     deleteOfficeById(officeId){
         return http.delete(`/offices/id?id=${officeId}`)
     }
+    getActiveReservationsByUserId(userId){
+        return http.get(`/users/${userId}/reservations?reservationState=0`)
+    }
+    getRecordOfReservationsByUserId(userId){
+        return http.get(`/users/${userId}/reservations?reservationState=1&reservationState=2&reservationState=3`)
+    }
+
 }
 
 export default new UserService();
