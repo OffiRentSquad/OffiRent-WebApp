@@ -38,17 +38,17 @@
       </v-card-subtitle>
       <v-divider inset></v-divider>
       <v-card-actions>
-        <v-btn to="/profile/edit" class="mt-4" block  color="#226bdd" style="color: white; border-radius: 10px">
+        <v-btn id="edit-profile" to="/profile/edit" class="mt-4" block  color="#226bdd" style="color: white; border-radius: 10px">
           <v-icon left>mdi-account-edit</v-icon>Editar Perfil
         </v-btn>
       </v-card-actions>
       <v-card-actions v-if="user.isPremium === false">
-        <v-btn to="/profile/premium" class="mb-2" block color="#226bdd" style="color: white; border-radius: 10px">
+        <v-btn id="premium" to="/profile/premium" class="mb-2" block color="#226bdd" style="color: white; border-radius: 10px">
           <v-icon left>mdi-account-edit</v-icon>Cambiate a Premium
         </v-btn>
       </v-card-actions>
       <v-card-actions v-else>
-        <v-btn to="/profile/cancel-premium" class="mb-2" block color="#226bdd" style="color: white; border-radius: 10px">
+        <v-btn id="cancel-premium" to="/profile/cancel-premium" class="mb-2" block color="#226bdd" style="color: white; border-radius: 10px">
           <v-icon left>mdi-account-edit</v-icon>Cancelar Premium
         </v-btn>
       </v-card-actions>
