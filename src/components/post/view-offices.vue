@@ -5,7 +5,8 @@
       <v-row dense>
         <v-col class="mt-3 grid" v-for="office in offices" :key="office.name" :cols="6">
           <v-card v-if="office.userId === 1">
-            <v-img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstudio3peru.com%2Fwp-content%2Fuploads%2F2016%2F12%2FOFICINA-EJECUTIVA-ESCRITORIO-Y-MESA-DE-REUNION.jpg&f=1&nofb=1" class="white--text align-end" height="200px">
+            <v-img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstudio3peru.com%2Fwp-content%2Fuploads%2F2016%2F12%2FOFICINA-EJECUTIVA-ESCRITORIO-Y-MESA-DE-REUNION.jpg&f=1&nofb=1"
+                   class="white--text align-end" height="200px">
               <v-card-title v-text="office.name"></v-card-title>
             </v-img>
             <v-card-actions>
@@ -21,7 +22,8 @@
         </v-col>
         <v-col class="mt-3 grid2" v-for="office in offices" :key="office.name" :cols="12">
           <v-card v-if="office.userId === 1">
-            <v-img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstudio3peru.com%2Fwp-content%2Fuploads%2F2016%2F12%2FOFICINA-EJECUTIVA-ESCRITORIO-Y-MESA-DE-REUNION.jpg&f=1&nofb=1" class="white--text align-end" height="200px">
+            <v-img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstudio3peru.com%2Fwp-content%2Fuploads%2F2016%2F12%2FOFICINA-EJECUTIVA-ESCRITORIO-Y-MESA-DE-REUNION.jpg&f=1&nofb=1"
+                   class="white--text align-end" height="200px">
               <v-card-title v-text="office.name"></v-card-title>
             </v-img>
             <v-card-actions>
@@ -64,7 +66,7 @@ export default {
 <style scoped>
 .top{
   margin-top: 4em;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 .grid{
   display: block;

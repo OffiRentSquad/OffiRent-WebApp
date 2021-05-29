@@ -57,7 +57,7 @@
       <v-card-title class="justify-center">Oficinas</v-card-title>
       <v-row dense>
         <v-col class="mt-3">
-          <v-card elevation="0">
+          <v-card class="mx-auto" elevation="0" max-width="800">
             <!--v-card v-if="office.userId === 1" para solo llamar a los offices de este user-->
             <v-card-title v-if="offices.length === 0" class="justify-center">No existen oficinas por el momento</v-card-title>
             <v-carousel v-else cycle height="300" hide-delimiters show-arrows-on-hover>
