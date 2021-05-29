@@ -33,7 +33,7 @@ class UserService {
         return http.get(`/posts?postState=${postState}`)
     }
     getAllBookingIntentsByPostId(postId){
-        return http.get(`/posts/${postId}/booking_intents`)
+        return http.get(`/bookingintents?bookingIntentState=0&postId=${postId}`)
     }
     getAllPostsByFilters(minPrice, maxPrice, districtId, active){
         return http.get(`/posts?minPrice=${minPrice}&maxPrice=${maxPrice}&districtId=${districtId}&active=${active}`)

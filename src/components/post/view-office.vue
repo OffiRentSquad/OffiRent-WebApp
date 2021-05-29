@@ -10,14 +10,14 @@
               </v-carousel-item>
             </v-carousel>
             <v-card-title v-text="offices.resource.description"></v-card-title>
-            <v-card-subtitle v-if="offices.resource.busy === false">Disponible</v-card-subtitle>
-            <v-card-subtitle v-else>Ocupada</v-card-subtitle>
+            <v-card-subtitle class="mt-2" v-if="offices.resource.busy === false">Disponible</v-card-subtitle>
+            <v-card-subtitle class="mt-2" v-else>Ocupada</v-card-subtitle>
             <p v-for="district in districts" v-bind:key="district.title">
             <v-card-text v-if="offices.resource.districtId === district.id">
               <v-icon>mdi-map-marker</v-icon>{{district.title}}
             </v-card-text>
             </p>
-            <v-card-actions  v-if="offices.resource.userId === 1">
+            <v-card-actions v-if="offices.resource.userId === 1 && offices.resource.busy === false">
               <v-btn text @click="$router.push(`/offices/${id}/edit`)" >
                 Editar
               </v-btn>

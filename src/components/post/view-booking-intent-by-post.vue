@@ -1,11 +1,9 @@
 <template>
-  <v-card class="mx-auto top" style="border-radius: 20px" max-width="800">
+  <v-card class="mx-auto top" style="border-radius: 10px" max-width="800">
     <v-card-title class="justify-center font-weight-light title-booking">
-      My Booking Intent</v-card-title>
+      Mis Intentos de Reserva</v-card-title>
     <v-divider></v-divider>
-
-    <v-data-table :headers="headers" :items="displayBooking" :items-per-page="5" locale="es-ES"
-                  class="" style="font-size: 18px;">
+    <v-data-table :headers="headers" :items="displayBooking" :items-per-page="5">
       <template v-slot:[`item.actions`]="{ item }">
         <v-chip @click="$router.push(`/booking-intent/${item.id}`)"
                 class="details" text-color="#fff" color="#226bdd">Ver más
@@ -21,13 +19,9 @@ import BookingIntent from "@/models/booking-intent";
 import UserService from "@/services/user-service";
 
 export default {
-  props: {
-    booking: Object[BookingIntent],
-  },
   data() {
     return {
       id: this.$route.params.id,
-      bookings: {},
       bookingIntent: BookingIntent,
       displayBooking: [],
       headers: [
@@ -40,12 +34,6 @@ export default {
     }
   },
   methods: {
-    retrieveBooking() {
-      UserService.getAllBookingIntentsByPostId(this.id).then(
-          response => {
-            this.bookings = response.data;
-          })
-    },
     getAllBookingIntents(){
       UserService.getAllBookingIntentsByPostId(this.id).then(
           response => {
