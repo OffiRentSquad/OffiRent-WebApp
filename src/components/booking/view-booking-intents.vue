@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     getAllReceivedBookingIntents(){
-      UserService.getSendBookingIntentsByUserId(1).then(
+      UserService.getSendBookingIntentsByUserId(3).then(
           response => {
             this.bookingIntent = response.data;
             this.displayReceivedBookings = response.data.map(this.getDisplayBooking);

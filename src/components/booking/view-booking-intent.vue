@@ -24,12 +24,12 @@
             Ver Post
           </v-btn>
         </v-card-subtitle>
-        <v-card-actions v-if="booking.resource.userId !== 2"><!--de momento 2 para no mostrarle las opciones de admin a este usuario // falta authentication-->
+        <v-card-actions v-if="booking.resource.userId !== 1"><!--de momento 2 para no mostrarle las opciones de admin a este usuario // falta authentication-->
           <v-btn @click="updateBooking(id, true)" rounded block class="mt-4" color="#226bdd" style="color: white;">
             <v-icon left>mdi-account-edit</v-icon>Aceptar
           </v-btn>
         </v-card-actions>
-        <v-card-actions v-if="booking.resource.userId !== 2">
+        <v-card-actions v-if="booking.resource.userId !== 1">
           <v-btn @click="updateBooking(id, false)" rounded block warning class="mb-2" color="#226bdd" style="color: white;">
             <v-icon left>mdi-account-edit</v-icon>Rechazar
           </v-btn>
