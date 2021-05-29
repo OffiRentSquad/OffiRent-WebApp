@@ -37,7 +37,7 @@
               </v-chip>
             </template>
             <template v-slot:[`item.officeId`]="{ item }">
-              <v-chip @click="$router.push(`/offices/${item.id}`)"
+              <v-chip @click="$router.push(`/offices/${item.officeId}`)"
                       class="button" text-color="#fff" color="#226bdd">Ver más
                 <v-icon right>mdi-arrow-right-circle</v-icon>
               </v-chip>
@@ -78,11 +78,11 @@ export default {
         startTime: this.formatDate(reservation.startTime.split("T")[0]),
         endTime: this.formatDate(reservation.endTime.split("T")[0]),
         userId: reservation.office.userId,
-        officeId: reservation.office.id,
+        officeId: reservation.office,
       }
     },
     getAllActiveReservations(){
-      UserService.getActiveReservationsByUserId(1).then(
+      UserService.getActiveReservationsByUserId(2).then(
           response => {
             this.reservation = response.data;
             this.displayActiveReservations = response.data.map(this.getReservations);
@@ -92,7 +92,7 @@ export default {
           });
     },
     getRecordOfReservation(){
-      UserService.getRecordOfReservationsByUserId(1).then(
+      UserService.getRecordOfReservationsByUserId(2).then(
           response => {
             this.reservation = response.data;
             this.displayRecordOfReservations = response.data.map(this.getReservations);

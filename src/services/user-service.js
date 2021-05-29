@@ -12,7 +12,7 @@ class UserService {
         return http.get(`/bookingintents?bookingIntentState=0&userId=${userId}`)
     }
     getRecordBookingIntentByUserId(userId){
-        return http.get(`/bookingintents?userId=${userId}&bookingIntentState=1&bookingIntentState=2&bookingIntentState=3`)
+        return http.get(`/bookingintents?userId=${userId}&bookingIntentState=1`)
     }
     getBookingIntentById(bookingId){
         return http.get(`/bookingintents/${bookingId}`)
@@ -63,10 +63,10 @@ class UserService {
         return http.delete(`/offices/id?id=${officeId}`)
     }
     getActiveReservationsByUserId(userId){
-        return http.get(`/users/${userId}/reservations?reservationState=0`)
+        return http.get(`/users/${userId}/reservations?reservationState=1`)
     }
     getRecordOfReservationsByUserId(userId){
-        return http.get(`/users/${userId}/reservations?reservationState=1&reservationState=2&reservationState=3`)
+        return http.get(`/users/${userId}/reservations?reservationState=3`)
     }
 
 }
