@@ -62,7 +62,7 @@
               <v-btn text @click=navigateToPost>
                 Cancelar
               </v-btn>
-              <v-btn text @click="postBooking" >
+              <v-btn text id="create-booking-intent" @click="postBooking" >
                 Publicar
               </v-btn>
             </v-card-actions>

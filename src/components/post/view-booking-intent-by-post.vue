@@ -5,7 +5,7 @@
     <v-divider></v-divider>
     <v-data-table :headers="headers" :items="displayBooking" :items-per-page="5">
       <template v-slot:[`item.actions`]="{ item }">
-        <v-chip @click="$router.push(`/booking-intent/${item.id}`)"
+        <v-chip id="view-booking-intent" @click="$router.push(`/booking-intent/${item.id}`)"
                 class="details" text-color="#fff" color="#226bdd">Ver más
           <v-icon right>mdi-arrow-right-circle</v-icon>
         </v-chip>

@@ -61,7 +61,7 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn text @click=navigateToOffices>Cancelar</v-btn>
-              <v-btn text @click="createOffice" >Crear</v-btn>
+              <v-btn text id="create-office" @click="createOffice" >Crear</v-btn>
             </v-card-actions>
           </v-card>
         </v-col>

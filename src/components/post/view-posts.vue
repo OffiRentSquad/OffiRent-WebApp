@@ -12,7 +12,7 @@
             </v-img>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn text @click="$router.push(`/posts/${post.id}`)" >
+              <v-btn id="view-post" text @click="$router.push(`/posts/${post.id}`)" >
                 Ver más
               </v-btn>
             </v-card-actions>

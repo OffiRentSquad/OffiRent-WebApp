@@ -15,7 +15,7 @@
                color="#226bdd" dark @click="handleLogin">Login</v-btn>
       </v-card-actions>
       <v-card-actions>
-        <v-btn to="/register" block  style="border-radius: 10px" class="mx-auto" dark color="#393e4e" type="submit">Aun no tienes cuenta</v-btn>
+        <v-btn id="register" to="/register" block  style="border-radius: 10px" class="mx-auto" dark color="#393e4e" type="submit">Aun no tienes cuenta</v-btn>
       </v-card-actions>
     </v-form>
   </v-card>

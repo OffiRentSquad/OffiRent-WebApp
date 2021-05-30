@@ -33,7 +33,7 @@
           </v-col>
           <v-col cols="12" sm="6">
             <v-card-title>
-              <a class="post" v-if="booking.resource.bookingIntentState === 0"
+              <a id="view-post" class="post" v-if="booking.resource.bookingIntentState === 0"
                  @click="$router.push(`/posts/${booking.resource.postId}`)">
                 Ver Post
               </a>

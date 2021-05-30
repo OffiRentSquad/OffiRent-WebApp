@@ -17,16 +17,16 @@
             <v-card-title>Acaba: {{formatDate(posts.endDate.split("T")[0])}}</v-card-title>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn text @click="$router.push(`/offices/${posts.officeId}`)" >
+              <v-btn id="view-office" text @click="$router.push(`/offices/${posts.officeId}`)" >
                 Ver Oficina
               </v-btn>
-              <v-btn text @click="$router.push(`/posts/${posts.id}/booking-intents`)" v-if="posts.userId === 1">
+              <v-btn id="view-bookings" text @click="$router.push(`/posts/${posts.id}/booking-intents`)" v-if="posts.userId === 2">
                 Ver Reservas
               </v-btn>
-              <v-btn text @click="deletePost(posts.id)" v-if="posts.userId === 1">
+              <v-btn text @click="deletePost(posts.id)" v-if="posts.userId === 2">
                 Eliminar
               </v-btn>
-              <v-btn text @click="$router.push(`/posts/${posts.officeId}/booking`)" v-else>
+              <v-btn id="book" text @click="$router.push(`/posts/${posts.officeId}/booking`)" v-else>
                 Reservar
               </v-btn>
             </v-card-actions>

@@ -18,7 +18,7 @@
             </v-card-text>
             </p>
             <v-card-actions v-if="offices.resource.userId === 1 && offices.resource.busy === false">
-              <v-btn text @click="$router.push(`/offices/${id}/edit`)" >
+              <v-btn id="edit-office" text @click="$router.push(`/offices/${id}/edit`)" >
                 Editar
               </v-btn>
               <v-btn text @click="deleteOffice(offices.resource.id)" >

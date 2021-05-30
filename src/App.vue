@@ -36,7 +36,7 @@
             <v-icon>mdi-checkbook</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <router-link id="bookingIntents" to="/booking-intents" style="text-decoration: none; color: inherit;">
+            <router-link id="booking" to="/booking-intents" style="text-decoration: none; color: inherit;">
               <v-list-item-title>Intentos de Reserva</v-list-item-title>
             </router-link>
           </v-list-item-content>
@@ -48,11 +48,11 @@
                 <v-list-item-title>Oficinas</v-list-item-title>
               </v-list-item-content>
             </template>
-            <v-list-item v-for="([title, icon, link], i) in offices" :key="i" link>
+            <v-list-item v-for="([title, icon, link, id], i) in offices" :key="i" link>
               <v-list-item-icon>
                 <v-icon v-text="icon"></v-icon>
               </v-list-item-icon>
-              <router-link :to="link" style="text-decoration: none; color: inherit;">
+              <router-link :id="id" :to="link" style="text-decoration: none; color: inherit;">
               <v-list-item-title v-text="title"></v-list-item-title>
               </router-link>
             </v-list-item>
@@ -107,8 +107,8 @@ export default {
     group: null,
     user: User,
     offices: [
-      ['Crear Oficina', 'mdi-playlist-plus','/offices/add'],
-      ['Ver todas', 'mdi-view-list','/offices'],
+      ['Crear Oficina', 'mdi-playlist-plus','/offices/add', 'add-offices'],
+      ['Ver todas', 'mdi-view-list','/offices', 'offices'],
     ],
   }),
   methods: {

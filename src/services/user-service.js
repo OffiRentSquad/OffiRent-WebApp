@@ -72,7 +72,7 @@ class UserService {
         return http.get(`/users/${userId}/reservations?reservationState=0`)
     }
     getRecordOfReservationsByUserId(userId){
-        return http.get(`/users/${userId}/reservations?reservationState=3`)
+        return http.get(`/users/${userId}/reservations?reservationState=1`)
     }
 
 }

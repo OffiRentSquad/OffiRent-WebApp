@@ -58,7 +58,7 @@
               <v-btn text @click=navigateToOffices>
                 Cancelar
               </v-btn>
-              <v-btn text @click="createPost" >
+              <v-btn text id="create-post" @click="createPost" >
                 Crear
               </v-btn>
             </v-card-actions>

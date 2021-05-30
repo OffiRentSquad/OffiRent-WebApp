@@ -43,7 +43,7 @@
                color="#226bdd" dark type="submit">Registrar</v-btn>
       </v-card-actions>
       <v-card-actions>
-        <v-btn to="/login" block  style="border-radius: 10px" class="mx-auto"
+        <v-btn id="login" to="/login" block  style="border-radius: 10px" class="mx-auto"
                dark color="#393e4e" type="submit">¿Ya tienes cuenta?</v-btn>
       </v-card-actions>
     </v-form>

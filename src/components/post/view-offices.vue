@@ -14,7 +14,7 @@
               <v-btn text v-if="office.userId === 1 && office.busy === false" @click="$router.push(`/offices/${office.id}/post`)" >
                 Crear post
               </v-btn>
-              <v-btn text @click="$router.push(`/offices/${office.id}`)" >
+              <v-btn id="view-office" text @click="$router.push(`/offices/${office.id}`)" >
                 Ver más
               </v-btn>
             </v-card-actions>
