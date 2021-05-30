@@ -6,32 +6,54 @@
           Intento de Reserva N°{{id}}
         </div>
       </v-card-title>
-      <v-card  class="mx-auto" max-width="720" elevation="0">
-        <v-card-title>Dia del Intento</v-card-title>
-        <v-card-subtitle>{{formatDate(booking.resource.intentDate.split("T")[0])}}</v-card-subtitle>
-        <v-card-title>Inicia</v-card-title>
-        <v-card-subtitle>{{formatDate(booking.resource.reservationProposedStartDate.split("T")[0])}}</v-card-subtitle>
-        <v-card-title>Acaba</v-card-title>
-        <v-card-subtitle>{{formatDate(booking.resource.reservationProposedEndDate.split("T")[0])}}</v-card-subtitle>
-        <v-card-title>Estado</v-card-title>
-        <v-card-subtitle v-if="booking.resource.bookingIntentState === 0">Pendiente</v-card-subtitle>
-        <v-card-subtitle v-else-if="booking.resource.bookingIntentState === 1">Aceptado</v-card-subtitle>
-        <v-card-subtitle v-else-if="booking.resource.bookingIntentState === 2">Rechazado</v-card-subtitle>
-        <v-card-subtitle v-else-if="booking.resource.bookingIntentState === 3">Cancelado</v-card-subtitle>
-        <v-card-subtitle>
-          <v-btn v-if="booking.resource.bookingIntentState === 0 ||
-                                    booking.resource.bookingIntentState === 2" @click="$router.push(`/posts/${booking.resource.postId}`)" class="mt-2" color="#226bdd" style="color: white; border-radius: 10px">
-            Ver Post
+      <v-card class="mx-auto" max-width="720" elevation="0">
+        <v-row>
+          <v-col cols="12" sm="6">
+            <v-card-title>Dia del Intento</v-card-title>
+            <v-card-subtitle>{{formatDate(booking.resource.intentDate.split("T")[0])}}</v-card-subtitle>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" sm="6">
+            <v-card-title>Inicia</v-card-title>
+            <v-card-subtitle>{{formatDate(booking.resource.reservationProposedStartDate.split("T")[0])}}</v-card-subtitle>
+          </v-col>
+          <v-col cols="12" sm="6">
+            <v-card-title>Acaba</v-card-title>
+            <v-card-subtitle>{{formatDate(booking.resource.reservationProposedEndDate.split("T")[0])}}</v-card-subtitle>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" sm="6">
+            <v-card-title>Estado</v-card-title>
+            <v-card-subtitle v-if="booking.resource.bookingIntentState === 0">Pendiente</v-card-subtitle>
+            <v-card-subtitle v-else-if="booking.resource.bookingIntentState === 1">Aceptado</v-card-subtitle>
+            <v-card-subtitle v-else-if="booking.resource.bookingIntentState === 2">Rechazado</v-card-subtitle>
+            <v-card-subtitle v-else-if="booking.resource.bookingIntentState === 3">Cancelado</v-card-subtitle>
+          </v-col>
+          <v-col cols="12" sm="6">
+            <v-card-title>
+              <a class="post" v-if="booking.resource.bookingIntentState === 0"
+                 @click="$router.push(`/posts/${booking.resource.postId}`)">
+                Ver Post
+              </a>
+            </v-card-title>
+          </v-col>
+        </v-row>
+        <v-card-actions v-if="booking.resource.bookingIntentState === 0 && booking.resource.userId !== 2"><!--de momento 2 para no mostrarle las opciones de admin a este usuario // falta authentication-->
+          <v-btn @click="updateBooking(id, true)" width="50%" color="#226bdd"
+                 style="color: white; border-radius: 10px">
+            <v-icon left>mdi-check</v-icon>Aceptar
           </v-btn>
-        </v-card-subtitle>
-        <v-card-actions v-if="booking.resource.userId !== 1"><!--de momento 2 para no mostrarle las opciones de admin a este usuario // falta authentication-->
-          <v-btn @click="updateBooking(id, true)" rounded block class="mt-4" color="#226bdd" style="color: white;">
-            <v-icon left>mdi-account-edit</v-icon>Aceptar
+          <v-btn @click="updateBooking(id, false)" width="50%" color="#393e4e"
+                 style="color: white; border-radius: 10px">
+            <v-icon left>mdi-cancel</v-icon>Rechazar
           </v-btn>
         </v-card-actions>
-        <v-card-actions v-if="booking.resource.userId !== 1">
-          <v-btn @click="updateBooking(id, false)" rounded block warning class="mb-2" color="#226bdd" style="color: white;">
-            <v-icon left>mdi-account-edit</v-icon>Rechazar
+        <v-card-actions v-if="booking.resource.userId === 2 && booking.resource.bookingIntentState === 0">
+          <v-btn @click="cancelBooking(id)" block color="#393e4e"
+                 style="color: white; border-radius: 10px">
+            <v-icon left>mdi-cancel</v-icon>Cancelar
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -50,6 +72,7 @@ export default {
     return {
       id: this.$route.params.id,
       booking: BookingIntent,
+      date: '2021-08-29',
     }
   },
   methods: {
@@ -64,6 +87,15 @@ export default {
     },
     updateBooking(id, value){
       UserService.updateBookingIntents(id, value)
+          .then(() => {
+            this.navigateToBooking();
+          })
+          .catch((e) => {
+            console.log(e);
+          });
+    },
+    cancelBooking(id){
+      UserService.cancelBookingIntentById(id)
           .then(() => {
             this.navigateToBooking();
           })
@@ -96,5 +128,8 @@ export default {
   .top{
     margin-top: 0;
   }
+}
+.post {
+  color: inherit;
 }
 </style>

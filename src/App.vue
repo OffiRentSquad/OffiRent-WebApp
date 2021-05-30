@@ -3,7 +3,7 @@
     <v-app-bar app color="dark" flat>
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-container class="py-0 fill-height">
-          <v-btn to="/">Home</v-btn>
+          <v-btn outlined to="/">Home</v-btn>
         <v-spacer></v-spacer>
         <v-responsive max-width="170">
           <v-text-field dense flat hide-details rounded solo-inverted clearable></v-text-field>

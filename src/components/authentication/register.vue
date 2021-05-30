@@ -91,7 +91,10 @@ export default {
       return () =>  (this.user.password === this.user.password1) || "Las contraseña deben coincidir";
     },
   },
+  methods:{
 
+
+  },
 }
 </script>
 

@@ -82,9 +82,14 @@ export default {
       ]
     }
   },
+  /*computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },*/
   methods: {
     getAllReceivedBookingIntents(){
-      UserService.getSendBookingIntentsByUserId(3).then(
+      UserService.getSendBookingIntentsByUserId(2).then(
           response => {
             this.bookingIntent = response.data;
             this.displayReceivedBookings = response.data.map(this.getDisplayBooking);
@@ -128,6 +133,9 @@ export default {
     },
   },
   mounted(){
+    /*if (!this.currentUser) {
+      this.$router.push('/login');
+    },*/
     this.getAllReceivedBookingIntents();
     this.getAllSendBookingIntents();
     this.getRecordBookingIntents();
