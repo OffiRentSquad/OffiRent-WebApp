@@ -2,10 +2,6 @@
   <v-card elevation="0" style="border-radius: 10px">
     <v-tabs centered class="pt-8">
       <v-tab>
-        <v-icon left>mdi-inbox</v-icon>
-        Recibidos
-      </v-tab>
-      <v-tab>
         <v-icon left>mdi-send</v-icon>
         Enviados
       </v-tab>
@@ -13,18 +9,6 @@
         <v-icon left>mdi-history</v-icon>
         Historial
       </v-tab>
-      <v-tab-item>
-        <v-card class="mx-auto mt-8" flat max-width="900">
-          <v-data-table :headers="headers" :items="displayReceivedBookings" :items-per-page="5">
-            <template v-slot:[`item.actions`]="{ item }">
-              <v-chip @click="$router.push(`/booking-intent/${item.id}`)"
-                      text-color="#fff" color="#226bdd">Ver más
-                <v-icon right>mdi-arrow-right-circle</v-icon>
-              </v-chip>
-            </template>
-          </v-data-table>
-        </v-card>
-      </v-tab-item>
       <v-tab-item>
         <v-card class="mx-auto mt-8" flat max-width="800">
           <v-data-table :headers="headers2" :items="displaySendBooking" :items-per-page="5">
@@ -63,7 +47,6 @@ export default {
   data() {
     return {
       bookingIntent: BookingIntent,
-      displayReceivedBookings: [],
       displaySendBooking: [],
       displayRecordBookings: [],
       headers: [
@@ -82,24 +65,14 @@ export default {
       ]
     }
   },
-  /*computed: {
+  computed: {
     currentUser() {
       return this.$store.state.auth.user;
     }
-  },*/
+  },
   methods: {
-    getAllReceivedBookingIntents(){
-      UserService.getSendBookingIntentsByUserId(2).then(
-          response => {
-            this.bookingIntent = response.data;
-            this.displayReceivedBookings = response.data.map(this.getDisplayBooking);
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-    },
     getAllSendBookingIntents(){
-      UserService.getSendBookingIntentsByUserId(2).then(
+      UserService.getSendBookingIntentsByUserId(this.currentUser.id).then(
           response => {
             this.bookingIntent = response.data;
             this.displaySendBooking = response.data.map(this.getDisplayBooking);
@@ -109,7 +82,7 @@ export default {
           });
     },
     getRecordBookingIntents(){
-      UserService.getRecordBookingIntentByUserId(2).then(
+      UserService.getRecordBookingIntentByUserId(this.currentUser.id).then(
           response => {
             this.bookingIntent = response.data;
             this.displayRecordBookings = response.data.map(this.getDisplayBooking);
@@ -133,10 +106,9 @@ export default {
     },
   },
   mounted(){
-    /*if (!this.currentUser) {
+    if (!this.currentUser) {
       this.$router.push('/login');
-    },*/
-    this.getAllReceivedBookingIntents();
+    }
     this.getAllSendBookingIntents();
     this.getRecordBookingIntents();
   }

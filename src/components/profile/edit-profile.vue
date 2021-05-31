@@ -24,7 +24,8 @@
         <v-btn color="#393e4e" class="ma-auto" width="100%" style="border-radius: 10px" dark @click="backClick">Cancelar</v-btn>
       </v-card-actions>
       <v-card-actions>
-        <v-btn :disabled="!isValid" color="#226bdd" class="ma-auto mb-2 white--text" width="100%" style="border-radius: 10px" @click="save">Guardar Cambios</v-btn>
+        <v-btn :disabled="!isValid" color="#226bdd" class="ma-auto mb-2 white--text" width="100%"
+               style="border-radius: 10px" @click="save">Guardar Cambios</v-btn>
       </v-card-actions>
     </v-card>
   </div>
@@ -61,11 +62,22 @@ export default {
     }
   },
   computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
     passwordConfirmationRule() {
       return () =>  (this.user.password === this.user.password1) || "Las contraseña deben coincidir";
     },
   },
   methods: {
+    getContent() {
+      UserService.getUserById(this.currentUser.id).then(
+          response => {
+            this.user = response.data;
+          }).catch( e => {
+        console.log((e));
+      })
+    },
     backClick() {
       this.navigateToProfile();
     },
@@ -83,13 +95,10 @@ export default {
     },
   },
   mounted() {
-    UserService.getUserById(1)
-        .then((response) => {
-          this.user = response.data
-        })
-        .catch(e => {
-          console.log((e));
-        })
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
+    this.getContent();
   }
 }
 </script>

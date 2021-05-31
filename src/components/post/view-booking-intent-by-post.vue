@@ -33,6 +33,11 @@ export default {
       ]
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods: {
     getAllBookingIntents(){
       UserService.getAllBookingIntentsByPostId(this.id).then(
@@ -59,6 +64,9 @@ export default {
     },
   },
   mounted(){
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
     this.getAllBookingIntents();
   }
 }

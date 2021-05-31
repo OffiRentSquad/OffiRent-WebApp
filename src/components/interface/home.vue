@@ -31,7 +31,7 @@
             <v-card-title class="font-weight-light">Resultados</v-card-title>
             <v-row dense>
               <v-col class="mt-3" v-for="post in posts" :key="post.title" :cols="4">
-                <v-card><!--v-card v-if="post.userId === 1" para solo llamar a los posts de este user-->
+                <v-card>
                   <v-img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.psicologiadelcolor.es%2Fwp-content%2Fuploads%2F2017%2F10%2FEl-color-ideal-para-el-mobiliario-de-oficina-Psicolog%25C3%25ADa-del-color-y-teor%25C3%25ADa-del-color.jpg&f=1&nofb=1" class="white--text align-end" height="200px">
                     <v-card-title v-text="post.title"></v-card-title>
                     <v-card-subtitle class="white--text">S/. {{post.monthlyPrice}}</v-card-subtitle>
@@ -58,7 +58,6 @@
       <v-row dense>
         <v-col class="mt-3">
           <v-card class="mx-auto" elevation="0" max-width="800">
-            <!--v-card v-if="office.userId === 1" para solo llamar a los offices de este user-->
             <v-card-title v-if="offices.length === 0" class="justify-center">No existen oficinas por el momento</v-card-title>
             <v-carousel v-else cycle height="300" hide-delimiters show-arrows-on-hover>
               <v-carousel-item v-for="office in offices" :key="office.id" :src="image">
@@ -142,9 +141,14 @@ export default {
       image: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstudio3peru.com%2Fwp-content%2Fuploads%2F2016%2F12%2FOFICINA-EJECUTIVA-ESCRITORIO-Y-MESA-DE-REUNION.jpg&f=1&nofb=1',
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods: {
     getContent() {
-      UserService.getUserById(1).then(
+      UserService.getUserById(this.currentUser.id).then(
           response => {
             this.user = response.data;
           }).catch( e => {
@@ -158,7 +162,7 @@ export default {
           })
     },
     retrievePosts() {
-      UserService.getAllPostsByUserId(1).then(
+      UserService.getAllPostsByUserId(this.currentUser.id).then(
           response => {
             this.allPosts = response.data;
           })
@@ -171,6 +175,9 @@ export default {
     },
   },
   mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
     this.getContent();
     this.retrieveOffices();
     this.getPostsByFilters();

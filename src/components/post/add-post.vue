@@ -81,12 +81,17 @@ export default {
       item: {
         id: 0,
         officeId: this.$route.params.id,
-        userId: 1,//this.$store.state.auth.user.id //por el momento 1
+        userId: this.$store.state.auth.user.id,
         startDate: '',
         endDate: '',
         title: '',
         monthlyPrice: 0,
       },
+    }
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
     }
   },
   methods: {
@@ -107,7 +112,9 @@ export default {
     },
   },
   mounted() {
-
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
   }
 }
 </script>

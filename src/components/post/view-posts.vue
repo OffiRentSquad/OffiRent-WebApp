@@ -5,8 +5,9 @@
       <v-card-subtitle v-if="posts.length === 0" class="text-center mt-5">Por el momento no cuentas con posts activos.</v-card-subtitle>
       <v-row dense>
         <v-col class="mt-3 grid" v-for="post in posts" :key="post.title" :cols="6">
-          <v-card v-if="post.userId === 1">
-            <v-img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.psicologiadelcolor.es%2Fwp-content%2Fuploads%2F2017%2F10%2FEl-color-ideal-para-el-mobiliario-de-oficina-Psicolog%25C3%25ADa-del-color-y-teor%25C3%25ADa-del-color.jpg&f=1&nofb=1" class="white--text align-end" height="200px">
+          <v-card v-if="post.userId === currentUser.id">
+            <v-img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.psicologiadelcolor.es%2Fwp-content%2Fuploads%2F2017%2F10%2FEl-color-ideal-para-el-mobiliario-de-oficina-Psicolog%25C3%25ADa-del-color-y-teor%25C3%25ADa-del-color.jpg&f=1&nofb=1"
+                   class="white--text align-end" height="200px">
               <v-card-title v-text="post.title"></v-card-title>
               <v-card-subtitle class="white--text">S/. {{post.monthlyPrice}}</v-card-subtitle>
             </v-img>
@@ -19,8 +20,9 @@
           </v-card>
         </v-col>
         <v-col class="mt-3 grid2" v-for="post in posts" :key="post.title" :cols="12">
-          <v-card v-if="post.userId === 1">
-            <v-img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.psicologiadelcolor.es%2Fwp-content%2Fuploads%2F2017%2F10%2FEl-color-ideal-para-el-mobiliario-de-oficina-Psicolog%25C3%25ADa-del-color-y-teor%25C3%25ADa-del-color.jpg&f=1&nofb=1" class="white--text align-end" height="200px">
+          <v-card v-if="post.userId === currentUser.id">
+            <v-img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.psicologiadelcolor.es%2Fwp-content%2Fuploads%2F2017%2F10%2FEl-color-ideal-para-el-mobiliario-de-oficina-Psicolog%25C3%25ADa-del-color-y-teor%25C3%25ADa-del-color.jpg&f=1&nofb=1"
+                   class="white--text align-end" height="200px">
               <v-card-title v-text="post.title"></v-card-title>
               <v-card-subtitle class="white--text">S/. {{post.monthlyPrice}}</v-card-subtitle>
             </v-img>
@@ -47,6 +49,11 @@ export default {
       posts: {},
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods: {
     retrievePosts() {
       UserService.getAllPostsByPostState(1).then(
@@ -56,6 +63,9 @@ export default {
     },
   },
   mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
     this.retrievePosts();
   }
 }

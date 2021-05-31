@@ -19,7 +19,7 @@
               </v-chip>
             </template>
             <template v-slot:[`item.officeId`]="{ item }">
-              <v-chip @click="$router.push(`/offices/${item.id}`)"
+              <v-chip @click="$router.push(`/offices/${item.officeId}`)"
                       class="button" text-color="#fff" color="#226bdd">Ver más
                 <v-icon right>mdi-arrow-right-circle</v-icon>
               </v-chip>
@@ -67,9 +67,13 @@ export default {
         {text: 'Inicia', value: 'startTime'},
         {text: 'Acaba', value: 'endTime'},
         {text: 'Dueño', value: 'userId', sortable: false},
-        {text: 'Oficina', value: 'oficceId', sortable: false},
+        {text: 'Oficina', value: 'officeId', sortable: false},
       ]
-
+    }
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
     }
   },
   methods: {
@@ -78,11 +82,11 @@ export default {
         startTime: this.formatDate(reservation.startTime.split("T")[0]),
         endTime: this.formatDate(reservation.endTime.split("T")[0]),
         userId: reservation.office.userId,
-        officeId: reservation.office,
+        officeId: reservation.office.id,
       }
     },
     getAllActiveReservations(){
-      UserService.getActiveReservationsByUserId(2).then(
+      UserService.getActiveReservationsByUserId(this.currentUser.id).then(
           response => {
             this.reservation = response.data;
             this.displayActiveReservations = response.data.map(this.getReservations);
@@ -92,7 +96,7 @@ export default {
           });
     },
     getRecordOfReservation(){
-      UserService.getRecordOfReservationsByUserId(2).then(
+      UserService.getRecordOfReservationsByUserId(this.currentUser.id).then(
           response => {
             this.reservation = response.data;
             this.displayRecordOfReservations = response.data.map(this.getReservations);
@@ -109,6 +113,9 @@ export default {
 
   },
   mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
     this.getAllActiveReservations();
     this.getRecordOfReservation();
   },

@@ -30,6 +30,11 @@ export default {
       isValid: true,
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods: {
     backClick() {
       this.navigateToProfile();
@@ -49,7 +54,10 @@ export default {
 
   },
   mounted() {
-    UserService.getUserById(1)
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
+    UserService.getUserById(this.currentUser.id)
         .then((response) => {
           this.user = response.data
         })

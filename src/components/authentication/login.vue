@@ -7,7 +7,7 @@
                     outlined></v-text-field>
       <v-text-field class="text" id="password" label="Contraseña"
                     :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                    :type="show ? 'text' : 'password'" v-model="user.email"
+                    :type="show ? 'text' : 'password'" v-model="user.password"
                     @click:append="show = !show" clearable required :rules="rules"
                     outlined @keyup.enter="handleLogin"></v-text-field>
       <v-card-actions>
@@ -28,7 +28,7 @@ export default {
   name: "login",
   data() {
     return {
-      user: User,
+      user: new User('','','','','',''),
       show: false,
       loading: false,
       isValid: true,
@@ -41,7 +41,16 @@ export default {
       ],
     }
   },
-
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    }
+  },
+  created() {
+    if (this.loggedIn) {
+      this.$router.push('/');
+    }
+  },
   methods: {
     handleLogin() {
       this.loading = true;
@@ -51,7 +60,7 @@ export default {
         this.loading = false;
         return;
       }
-      if (this.user.email && this.user.email) {
+      if (this.user.email && this.user.password) {
         console.log('Loggin in...');
         this.$store.dispatch('auth/login', this.user).then(
             (user) => {
@@ -69,9 +78,6 @@ export default {
       }
     }
   },
-  mounted() {
-
-  }
 }
 </script>
 

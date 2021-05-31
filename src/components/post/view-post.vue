@@ -20,10 +20,11 @@
               <v-btn id="view-office" text @click="$router.push(`/offices/${posts.officeId}`)" >
                 Ver Oficina
               </v-btn>
-              <v-btn id="view-bookings" text @click="$router.push(`/posts/${posts.id}/booking-intents`)" v-if="posts.userId === 2">
+              <v-btn id="view-bookings" text @click="$router.push(`/posts/${posts.id}/booking-intents`)"
+                     v-if="posts.userId === currentUser.id">
                 Ver Reservas
               </v-btn>
-              <v-btn text @click="deletePost(posts.id)" v-if="posts.userId === 2">
+              <v-btn text @click="deletePost(posts.id)" v-if="posts.userId === currentUser.id">
                 Eliminar
               </v-btn>
               <v-btn id="book" text @click="$router.push(`/posts/${posts.officeId}/booking`)" v-else>
@@ -66,6 +67,11 @@ export default {
       ],
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods:{
     retrievePost() {
       UserService.getPostById(this.id).then(
@@ -101,6 +107,9 @@ export default {
     },
 },
   mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
     this.retrievePost();
 },
 }

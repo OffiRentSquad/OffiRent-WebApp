@@ -40,7 +40,7 @@
             </v-card-title>
           </v-col>
         </v-row>
-        <v-card-actions v-if="booking.resource.bookingIntentState === 0 && booking.resource.userId !== 2"><!--de momento 2 para no mostrarle las opciones de admin a este usuario // falta authentication-->
+        <v-card-actions v-if="booking.resource.bookingIntentState === 0 && booking.resource.userId !== currentUser.id">
           <v-btn @click="updateBooking(id, true)" width="50%" color="#226bdd"
                  style="color: white; border-radius: 10px">
             <v-icon left>mdi-check</v-icon>Aceptar
@@ -50,7 +50,7 @@
             <v-icon left>mdi-cancel</v-icon>Rechazar
           </v-btn>
         </v-card-actions>
-        <v-card-actions v-if="booking.resource.userId === 2 && booking.resource.bookingIntentState === 0">
+        <v-card-actions v-if="booking.resource.userId === currentUser.id && booking.resource.bookingIntentState === 0">
           <v-btn @click="cancelBooking(id)" block color="#393e4e"
                  style="color: white; border-radius: 10px">
             <v-icon left>mdi-cancel</v-icon>Cancelar
@@ -72,7 +72,11 @@ export default {
     return {
       id: this.$route.params.id,
       booking: BookingIntent,
-      date: '2021-08-29',
+    }
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
     }
   },
   methods: {
@@ -113,6 +117,9 @@ export default {
     },
   },
   mounted(){
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
     this.retrieveBooking();
   }
 }

@@ -17,7 +17,7 @@
               <v-icon>mdi-map-marker</v-icon>{{district.title}}
             </v-card-text>
             </p>
-            <v-card-actions v-if="offices.resource.userId === 1 && offices.resource.busy === false">
+            <v-card-actions v-if="offices.resource.userId === currentUser.id && offices.resource.busy === false">
               <v-btn id="edit-office" text @click="$router.push(`/offices/${id}/edit`)" >
                 Editar
               </v-btn>
@@ -104,6 +104,11 @@ export default {
       ],
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods: {
     retrieveOffices() {
       UserService.getOfficeById(this.id).then(
@@ -125,6 +130,9 @@ export default {
     },
   },
   mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
     this.retrieveOffices();
   },
 }

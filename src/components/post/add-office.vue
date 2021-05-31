@@ -110,7 +110,7 @@ export default {
       offices: {},
       item: {
         id: 0,
-        userId: 1,//this.$store.state.auth.user.id //por el momento 1
+        userId: this.$store.state.auth.user.id,
         districtId: '',
         latitude: 0,
         longitude: 0,
@@ -162,6 +162,11 @@ export default {
       ],
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods: {
     createOffice() {
       UserService.createOffice(this.item)
@@ -173,7 +178,7 @@ export default {
           })
     },
     getProfile() {
-      UserService.getUserById(1).then(
+      UserService.getUserById(this.currentUser.id).then(
           response => {
             this.user = response.data;
           }).catch( e => {
@@ -181,7 +186,7 @@ export default {
       })
     },
     retrieveOffices() {
-      UserService.getAllOfficesByUserId(1).then(
+      UserService.getAllOfficesByUserId(this.currentUser.id).then(
           response => {
             this.offices = response.data;
           })
@@ -191,6 +196,9 @@ export default {
     },
   },
   mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
     this.getProfile();
     this.retrieveOffices();
   }

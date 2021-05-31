@@ -20,9 +20,10 @@ export default {
 
     }
   },
-  methods: {
-  },
   mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
   }
 }
 </script>

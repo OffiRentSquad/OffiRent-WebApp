@@ -68,9 +68,14 @@ export default {
       user: User,
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods: {
     getContent() {
-      UserService.getUserById(1).then(
+      UserService.getUserById(this.currentUser.id).then(
           response => {
             this.user = response.data;
           }).catch( e => {
@@ -84,6 +89,15 @@ export default {
     },
   },
   mounted(){
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
+    UserService.getUserById(this.currentUser.id).then(
+        response => {
+          this.user = response.data;
+        }).catch( e => {
+      console.log((e));
+    })
     this.getContent();
   }
 }

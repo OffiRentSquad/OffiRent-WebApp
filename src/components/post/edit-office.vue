@@ -83,6 +83,11 @@ export default {
       ],
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods: {
     backClick() {
       this.navigateToOffices();
@@ -101,6 +106,9 @@ export default {
     },
   },
   mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
     UserService.getOfficeById(this.id)
         .then((response) => {
           this.office = response.data

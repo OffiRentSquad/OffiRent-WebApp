@@ -37,6 +37,11 @@ export default {
       id: this.$route.params.id,
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods: {
     getContent() {
       UserService.getUserById(this.id).then(
@@ -53,6 +58,9 @@ export default {
     },
   },
   mounted(){
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
     this.getContent();
   }
 }

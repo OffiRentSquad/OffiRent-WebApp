@@ -8,7 +8,6 @@ const routes = [
   { path: '/', name: 'home', component: () => import('../components/interface/home') },
   { path: '/login', name: 'login', component: () => import('../components/authentication/login') },
   { path: '/register', name: 'register', component: () => import('../components/authentication/register') },
-  { path: '/about', name: 'about', component: () => import('../components/post/about') },
   { path: '/profile', name: 'view-profile', component: () => import('../components/profile/view-profile') },
   { path: '/profile/edit', name: 'edit-profile', component: () => import('../components/profile/edit-profile') },
   { path: '/profile/premium', name: 'change-to-premium', component: () => import('../components/profile/change-to-premium') },

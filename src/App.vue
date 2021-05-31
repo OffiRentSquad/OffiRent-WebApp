@@ -78,14 +78,14 @@
             </router-link>
           </v-list-item-content>
         </v-list-item>
-        <!--v-list-item-- @click="logout">
+        <v-list-item @click="logout">
           <v-list-item-icon>
             <v-icon>mdi-logout</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
             <v-list-item-title>Cerrar sesión</v-list-item-title>
           </v-list-item-content>
-        </v-list-item-->
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-main>
@@ -113,22 +113,24 @@ export default {
   }),
   methods: {
     getContent() {
-      UserService.getUserById(1).then(
+      UserService.getUserById(this.currentUser.id).then(
           response =>{
             this.user = response.data
           })
     },
+    logout() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    }
   },
   mounted(){
-    UserService.getUserById(1).then(
-        response => {
-          this.user = response.data;
-        }).catch( e => {
-      console.log((e));
-    })
     this.getContent();
-  }
-
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
 }
 </script>
 
