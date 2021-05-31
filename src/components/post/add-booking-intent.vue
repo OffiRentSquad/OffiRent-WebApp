@@ -84,7 +84,7 @@ export default {
       id: this.$route.params.id,
       item: {
         id: 0,
-        intentDate: '2021-05-30',
+        intentDate: '2021-05-31',
         postId: this.$route.params.id,
         userId: this.$store.state.auth.user.id,
         reservationProposedStartDate: this.date,

@@ -2,6 +2,7 @@
   <v-card class="mx-auto top" max-width="1000" elevation="0">
     <v-container fluid>
       <v-card-title class="justify-center font-weight-light title">Oficinas</v-card-title>
+      <v-card-subtitle v-if="offices.length === 0" class="text-center mt-5">Por el momento no cuentas con oficinas.</v-card-subtitle>
       <v-row dense>
         <v-col class="mt-3 grid" v-for="office in offices" :key="office.name" :cols="6">
           <v-card v-if="office.userId === currentUser.id">
@@ -61,13 +62,16 @@ export default {
   },
   methods: {
     retrieveOffices() {
-      UserService.getAllOfficesByUserId(1).then(
+      UserService.getAllOfficesByUserId(this.currentUser.id).then(
           response => {
             this.offices = response.data;
           })
     },
   },
   mounted() {
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
     this.retrieveOffices();
   }
 }

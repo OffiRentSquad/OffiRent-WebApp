@@ -4,7 +4,7 @@
       <v-card-title class="justify-center font-weight-light title">{{offices.resource.name}}</v-card-title>
       <v-row dense>
         <v-col class="mt-3 grid">
-          <v-card>
+          <v-card elevation="0">
             <v-carousel cycle height="400" hide-delimiter-background show-arrows-on-hover>
               <v-carousel-item v-for="(item, i) in items" :key="i" :src="item.src">
               </v-carousel-item>

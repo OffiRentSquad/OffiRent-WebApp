@@ -162,7 +162,7 @@ export default {
           })
     },
     retrievePosts() {
-      UserService.getAllPostsByUserId(this.currentUser.id).then(
+      UserService.getAllPostsByUserId().then(
           response => {
             this.allPosts = response.data;
           })
