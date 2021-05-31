@@ -1,6 +1,6 @@
 <template>
   <v-app app>
-    <v-app-bar app color="dark" flat>
+    <v-app-bar app color="dark" flat v-if="currentUser">
       <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-container class="py-0 fill-height">
           <v-btn outlined to="/">Home</v-btn>
@@ -10,7 +10,7 @@
         </v-responsive>
       </v-container>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" app>
+    <v-navigation-drawer v-model="drawer" app v-if="currentUser">
       <v-sheet class="pa-4">
         <v-avatar class="mb-4" color="grey darken-1" size="210"></v-avatar>
         <div class="text-center">{{user.email}}</div>
@@ -111,6 +111,11 @@ export default {
       ['Ver todas', 'mdi-view-list','/offices', 'offices'],
     ],
   }),
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods: {
     getContent() {
       UserService.getUserById(this.currentUser.id).then(
@@ -125,11 +130,6 @@ export default {
   },
   mounted(){
     this.getContent();
-  },
-  computed: {
-    currentUser() {
-      return this.$store.state.auth.user;
-    }
   },
 }
 </script>

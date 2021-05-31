@@ -28,7 +28,7 @@ class UserService {
         return http.delete(`bookingintents/id?id=${bookingId}`, { headers: authHeader() })
     }
     updateBookingIntents(bookingId, active){
-        return http.patch(`/bookingintents?intentId=${bookingId}&accept=${active}`, { headers: authHeader() })
+        return http.patch(`/bookingintents?intentId=${bookingId}&accept=${active}`,{ headers: authHeader() },{ headers: authHeader() })
     }
     createPosts(data){
         return http.post(`/posts`,data, { headers: authHeader() })
